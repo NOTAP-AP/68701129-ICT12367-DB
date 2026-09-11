@@ -14,6 +14,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
+    path: '/add_customer',
+    name: 'add_customer',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/Add_Customer.vue')
+  },
+  {
     path: '/customer',
     name: 'customer',
     
@@ -24,6 +30,12 @@ const routes = [
     name: 'employee',
     
     component: () => import(/* webpackChunkName: "about" */ '../views/EmployeeView.vue')
+  },
+  {
+    path: '/add_employee',
+    name: 'add_employee',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/Add_employee.vue')
   }
 ]
 
