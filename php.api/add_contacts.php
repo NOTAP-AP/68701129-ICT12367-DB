@@ -5,11 +5,10 @@ include 'condb.php';
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (
-    !isset($data['firstName']) ||
-    !isset($data['lastName']) ||
-    !isset($data['phone']) ||
-    !isset($data['username']) ||
-    !isset($data['password'])
+    !isset($data['subject']) ||
+    !isset($data['detail']) ||
+    !isset($data['fullname']) ||
+    !isset($data['email'])
 ) {
     echo json_encode([
         "success" => false,
@@ -19,18 +18,17 @@ if (
 }
 
 try {
-    $sql = "INSERT INTO employees
-            (firstName, lastName, phone, username, password)
+    $sql = "INSERT INTO contacts
+            (subject, detail, fullname, email)
             VALUES
-            (:firstName, :lastName, :phone, :username, :password)";
+            (:subject, :detail, :fullname, :email)";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([
-        ':firstName' => $data['firstName'],
-        ':lastName'  => $data['lastName'],
-        ':phone'     => $data['phone'],
-        ':username'  => $data['username'],
-        ':password'  => password_hash($data['password'], PASSWORD_DEFAULT)
+        ':subject'    => $data['subject'],
+        ':detail'     => $data['detail'],
+        ':fullname'   => $data['fullname'],
+        ':email'      => $data['email'],
     ]);
 
     echo json_encode([

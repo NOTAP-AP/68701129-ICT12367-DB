@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <router-link class="navbar-brand fw-bold" to="/">Shabu House</router-link>
+      <router-link class="navbar-brand fw-bold" to="/">Loba Shop</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -22,8 +22,21 @@
             <router-link class="nav-link" to="/Customer">Customer</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/employee">employee</router-link>
+            <router-link class="nav-link" to="/employee">Employee</router-link>
           </li>
+
+          <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Contact
+          </button>
+          <ul class="dropdown-menu">
+            <li><router-link class="dropdown-item" :to="{ name: '/contacts' }">Contact</router-link></li>
+            <li><router-link class="dropdown-item" :to="{ name: '/add_contacts' }">เพิ่มข้อมูล</router-link></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><router-link class="dropdown-item" :to="{ name: '/show_contacts' }">แสดงข้อมูล</router-link></li>
+          </ul>
+
+        </li>
            <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
@@ -36,11 +36,23 @@ const routes = [
     name: 'add_employee',
     
     component: () => import(/* webpackChunkName: "about" */ '../views/Add_employee.vue')
+  },
+{
+    path: '/add_contacts',
+    name: 'add_contacts',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/Add_Contacts.vue')
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/Contacts.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
 
