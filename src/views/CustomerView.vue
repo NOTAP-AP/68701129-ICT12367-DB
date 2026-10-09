@@ -16,6 +16,7 @@
           <th>นามสกุล</th>        <!-- lastName -->
           <th>เบอร์โทร</th>       <!-- phone -->
           <th>ชื่อผู้ใช้</th>      <!-- username -->
+          <th>จัดการ</th>
         </tr>
       </thead>
 
@@ -28,6 +29,15 @@
           <td>{{ item.lastName }}</td>    <!-- นามสกุล -->
           <td>{{ item.phone }}</td>       <!-- เบอร์โทร -->
           <td>{{ item.username }}</td>    <!-- ชื่อผู้ใช้ -->
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              :disabled="deletingId === item.customer_id"
+              @click="deleteCustomer(item)"
+            >
+              {{ deletingId === item.customer_id ? "กำลังลบ..." : "ลบ" }}
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,6 +50,9 @@
     <!-- Error: แสดงเมื่อเกิดข้อผิดพลาด -->
     <div v-if="error" class="alert alert-danger">
       {{ error }}
+    </div>
+    <div v-if="success" class="alert alert-success">
+      {{ success }}
     </div>
   </div>
 </template>
@@ -58,12 +71,15 @@ export default {
     const customers = ref([]); // เก็บข้อมูลลูกค้า (array)
     const loading = ref(true); // สถานะโหลดข้อมูล
     const error = ref(null);   // เก็บ error
+    const success = ref(null);
+    const deletingId = ref(null);
 
     // -----------------------------
     // ฟังก์ชันดึงข้อมูลจาก API
     // -----------------------------
     const fetchdata = async () => {
       try {
+        error.value = null;
         // เรียก API (PHP)
         const response = await fetch("http://localhost/68701129-ICT12367-DB/php.api/show_customer.php");
 
@@ -85,6 +101,36 @@ export default {
       }
     };
 
+    const deleteCustomer = async (customer) => {
+      if (!window.confirm(`ยืนยันการลบลูกค้า ${customer.firstName} ${customer.lastName} หรือไม่?`)) {
+        return;
+      }
+
+      deletingId.value = customer.customer_id;
+      error.value = null;
+      success.value = null;
+
+      try {
+        const response = await fetch("http://localhost/68701129-ICT12367-DB/php.api/delete_customer.php", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ customer_id: customer.customer_id })
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "ไม่สามารถลบข้อมูลลูกค้าได้");
+        }
+
+        customers.value = customers.value.filter((item) => item.customer_id !== customer.customer_id);
+        success.value = result.message;
+      } catch (err) {
+        error.value = err.message;
+      } finally {
+        deletingId.value = null;
+      }
+    };
+
     // -----------------------------
     // lifecycle: ทำงานเมื่อ component โหลดเสร็จ
     // -----------------------------
@@ -98,7 +144,10 @@ export default {
     return {
       customers,
       loading,
-      error
+      error,
+      success,
+      deletingId,
+      deleteCustomer
     };
   }
 };
