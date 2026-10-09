@@ -3,7 +3,7 @@
     <!-- หัวข้อหน้า -->
     <h2 class="mb-3">รายชื่อลูกค้า</h2>
     <div class="text-end mb-3">
-      <a href="/add_employee" class="btn btn-primary">Add+</a>
+      <router-link :to="{ name: 'add_employee' }" class="btn btn-primary">Add+</router-link>
      </div>
     <!-- ตารางแสดงข้อมูลลูกค้า -->
     <table class="table table-bordered table-striped">

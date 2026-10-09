@@ -5,7 +5,7 @@
     
     <!-- ตารางแสดงข้อมูลลูกค้า -->
      <div class="text-end mb-3">
-      <a href="/add_customer" class="btn btn-primary">Add+</a>
+      <router-link :to="{ name: 'add_customer' }" class="btn btn-primary">Add+</router-link>
      </div>
     <table class="table table-bordered table-striped">
       <thead class="table-dark">

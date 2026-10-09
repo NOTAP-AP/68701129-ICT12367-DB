@@ -16,13 +16,13 @@
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/showproduct">Show Product</router-link>
+            <router-link class="nav-link" :to="{ name: 'products' }">Show Product</router-link>
           </li>
            <li class="nav-item">
-            <router-link class="nav-link" to="/Customer">Customer</router-link>
+            <router-link class="nav-link" :to="{ name: 'customer' }">Customer</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/employee">Employee</router-link>
+            <router-link class="nav-link" :to="{ name: 'employee' }">Employee</router-link>
           </li>
 
           <li class="nav-item dropdown">
@@ -30,10 +30,10 @@
             Contact
           </button>
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" :to="{ name: '/contacts' }">Contact</router-link></li>
-            <li><router-link class="dropdown-item" :to="{ name: '/add_contacts' }">เพิ่มข้อมูล</router-link></li>
+            <li><router-link class="dropdown-item" :to="{ name: 'contacts' }">Contact</router-link></li>
+            <li><router-link class="dropdown-item" :to="{ name: 'add_contacts' }">เพิ่มข้อมูล</router-link></li>
             <li><hr class="dropdown-divider"></li>
-            <li><router-link class="dropdown-item" :to="{ name: '/show_contacts' }">แสดงข้อมูล</router-link></li>
+            <li><router-link class="dropdown-item" :to="{ name: 'contacts' }">แสดงข้อมูล</router-link></li>
           </ul>
 
         </li>
