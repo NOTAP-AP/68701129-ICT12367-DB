@@ -46,8 +46,21 @@
             <li><router-link class="dropdown-item" :to="{ name: 'contacts_crud' }">Contact CRUD</router-link></li>
           </ul>
         </li>
+
+
+          <li class="nav-item dropdown">
+            <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Product
+            </button>
+            <ul class="dropdown-menu">
+              <li><router-link class="dropdown-item" :to="{ name: 'product' }">จัดการสินค้า</router-link></li>
+              <li><router-link class="dropdown-item" :to="{ name: 'products' }">รายการสินค้า</router-link></li>
+            </ul>
+          </li>
+
+          
            <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
+            <router-link class="nav-link" to="/asset">Asset</router-link>
           </li>
         </ul>
       </div>

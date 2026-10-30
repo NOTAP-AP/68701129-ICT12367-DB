@@ -152,6 +152,34 @@ INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `i
 (2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2026-09-04 02:45:58'),
 (3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2026-09-04 02:45:58');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assets`
+--
+
+CREATE TABLE `assets` (
+  `asset_id` int(11) NOT NULL AUTO_INCREMENT,
+  `asset_code` varchar(50) NOT NULL COMMENT 'รหัสครุภัณฑ์',
+  `asset_name` varchar(255) NOT NULL COMMENT 'ชื่อครุภัณฑ์',
+  `purchase_date` date DEFAULT NULL COMMENT 'วันที่ซื้อ',
+  `price` decimal(10,2) DEFAULT NULL COMMENT 'ราคา',
+  `image` varchar(100) DEFAULT NULL COMMENT 'ชื่อไฟล์หรือ Path รูปภาพ',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assets`
+--
+
+INSERT INTO `assets` (`asset_id`, `asset_code`, `asset_name`, `purchase_date`, `price`, `image`) VALUES
+(1, 'IT001', 'คอมพิวเตอร์ตั้งโต๊ะ', '2026-01-15', '25000.00', 'computer.jpg'),
+(2, 'IT002', 'โน้ตบุ๊ก', '2026-02-10', '32000.00', 'notebook.jpg'),
+(3, 'IT003', 'เครื่องพิมพ์', '2026-03-05', '8500.00', 'printer.jpg'),
+(4, 'IT004', 'โปรเจกเตอร์', '2026-04-20', '18000.00', 'projector.jpg'),
+(5, 'IT005', 'เครื่องสำรองไฟ UPS', '2026-05-12', '3500.00', 'ups.jpg');
+
 --
 -- Indexes for dumped tables
 --
